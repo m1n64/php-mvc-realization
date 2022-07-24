@@ -13,6 +13,6 @@
 
 **Description:**
 
-This is test project as part of my PHP course. And the course is in my telegram channel - [@fromidiottojumior](https://t.me/fromidiottojumior)
+This is test project as part of my PHP course. And the course is in my telegram channel - [@fromidiottojunior](https://t.me/fromidiottojunior)
 
 *(I will add a link to the combined course later.)*
