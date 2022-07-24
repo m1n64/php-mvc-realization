@@ -1,0 +1,25 @@
+$base-padding: 10px;
+
+@for $i from 1 through 5 {
+  .padding-#{$base-padding} {
+    padding: $base-padding;
+  }
+
+  .padding-top-#{$base-padding} {
+    padding-top: $base-padding;
+  }
+
+  .padding-bottom-#{$base-padding} {
+    padding-bottom: $base-padding;
+  }
+
+  .padding-left-#{$base-padding} {
+    padding-left: $base-padding;
+  }
+
+  .padding-right-#{$base-padding} {
+    padding-right: $base-padding;
+  }
+
+  $base-padding: $base-padding + 5;
+}

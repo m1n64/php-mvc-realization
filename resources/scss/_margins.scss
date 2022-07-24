@@ -1,0 +1,25 @@
+$base-margin: 10px;
+
+@for $i from 1 through 5 {
+  .margin-#{$base-margin} {
+    margin: $base-margin;
+  }
+
+  .margin-top-#{$base-margin} {
+    margin-top: $base-margin;
+  }
+
+  .margin-bottom-#{$base-margin} {
+    margin-bottom: $base-margin;
+  }
+
+  .margin-right-#{$base-margin} {
+    margin-right: $base-margin;
+  }
+
+  .margin-left-#{$base-margin} {
+    margin-left: $base-margin;
+  }
+
+  $base-margin: $base-margin + 5;
+}

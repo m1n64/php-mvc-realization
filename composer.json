@@ -1,0 +1,20 @@
+{
+    "name": "m1n64/base-mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kirill Sakharov",
+            "email": "kirill.sakharov@magedia.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*",
+      "ext-json": "*",
+        "devcoder-xyz/php-dotenv": "^1.1",
+      "ext-simplexml": "*"
+    }
+}

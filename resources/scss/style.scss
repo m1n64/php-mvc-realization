@@ -1,0 +1,23 @@
+@import "~mdb-ui-kit/src/scss/mdb.free";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~toastify-js/src/toastify.css";
+
+@import "colors";
+@import "paddings";
+@import "margins";
+@import "components/preloader";
+@import "components/tasklist";
+
+/*MAIN STYLES*/
+html, body {
+  height: 100%;
+}
+
+#app {
+  background-color: $main-bg-color;
+  height: 100%;
+  padding-top: 2.5%;
+}
