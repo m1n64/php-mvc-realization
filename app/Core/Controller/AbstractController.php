@@ -46,7 +46,9 @@ abstract class AbstractController
      */
     protected function middleware(string $middlewarePath) : void
     {
-        $middleware = new $middlewarePath();
+        $container = require __DIR__ . "/../config/di.php";
+
+        $middleware = $container->get($middlewarePath);
         if ($middleware instanceof MiddlewareInterface) {
             $middleware->execute();
         }

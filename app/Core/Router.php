@@ -3,25 +3,33 @@ namespace App\Core;
 
 
 use App\Core\Http\Response;
+use App\Core\Router\ParametersParser;
+use App\Core\Router\Route;
 
 class Router
 {
     /**
-     * @var array
+     * @var Route[]
      */
     protected static array $paths = [];
 
+    /**
+     * @return void
+     */
     public static function start() : void
     {
         $routes = self::cleanRoute();
+        $container = require "config/di.php";
 
         if (isset(self::$paths[$routes])) {
             $currentPath = self::$paths[$routes];
 
-            if ($_SERVER['REQUEST_METHOD'] == $currentPath["method"]) {
-                $controller = new $currentPath["controller"]();
+            if ($_SERVER['REQUEST_METHOD'] == $currentPath->getMethod()) {
+                //$controller = new $currentPath["controller"]();
+                $controller = $container->get($currentPath->getController());
 
-                $actionName = $currentPath["action"];
+                $actionName = $currentPath->getAction();
+                //$parameters = $currentPath->getRouteParams();
                 $controller->$actionName();
             }
             else {
@@ -77,11 +85,12 @@ class Router
     private static function addPath(string $path, array $controller, string $method) : void
     {
         if (!isset(self::$paths[$path])) {
-            self::$paths[$path] = [
+            /*self::$paths[$path] = [
                 "controller" => $controller[0],
                 "action" => $controller[1] ?? "index",
                 "method" => $method
-            ];
+            ];*/
+            self::$paths[$path] = new Router\Route($path, $controller[0], $controller[1] ?? "index", $method);
         }
     }
 
@@ -93,10 +102,13 @@ class Router
         return explode("?", $_SERVER['REQUEST_URI'])[0];
     }
 
+    /**
+     * @return void
+     */
     private static function pageNotFound() : void
     {
         header('HTTP/1.1 404 Not Found');
         header("Status: 404 Not Found");
-        (new Response)->redirect("404");
+        (new Response())->redirect("404");
     }
 }

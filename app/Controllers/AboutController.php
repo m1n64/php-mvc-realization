@@ -10,10 +10,12 @@ use App\Models\UserIp;
 class AboutController extends AbstractController
 {
 
-    public function __construct()
+    public function __construct(
+        UserIp $userIp
+    )
     {
         parent::__construct();
-        $this->model = new UserIp();
+        $this->model = $userIp;
         $this->middleware(GetCountryByIp::class);
     }
 
