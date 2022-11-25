@@ -6,7 +6,7 @@ use App\Core\View\Interfaces\ViewInterface;
 
 class HtmlView implements ViewInterface
 {
-    const VIEWS_PATH = 'app/Views/';
+    protected const VIEWS_PATH = 'app/Views/';
 
     /**
      * @param string $contentView

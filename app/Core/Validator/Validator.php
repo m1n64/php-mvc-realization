@@ -25,12 +25,16 @@ class Validator
                 if (isset($rules[$key])) {
                     $currentRule = $rules[$key];
 
-                    if (self::validateRequired($currentRule[0], $value)) $flag = true;
-                    else {
-                        if (empty($value)) continue;
+                    if (self::validateRequired($currentRule[0], $value)) {
+                        $flag = true;
+                    }
+                    else if (empty($value)) {
+                        continue;
                     }
 
-                    if (self::validateType($currentRule[1], $value)) $flag = true;
+                    if (self::validateType($currentRule[1], $value)) {
+                        $flag = true;
+                    }
                 }
             }
         }
@@ -48,9 +52,7 @@ class Validator
      */
     private static function validateRequired($rule, $value) : bool
     {
-        if ($rule === self::REQUIRED_RULE && empty(($value !== 0 ? $value : "0.0"))) return false;
-
-        return true;
+        return !($rule === self::REQUIRED_RULE && empty(($value !== 0 ? $value : "0.0")));
     }
 
     /**
@@ -63,15 +65,21 @@ class Validator
         switch ($type)
         {
             case self::STRING_RULE:
-                if (!is_string($value)) return false;
+                if (!is_string($value)) {
+                    return false;
+                }
                 break;
 
             case self::NUMERIC_RULE:
-                if (!is_numeric($value)) return false;
+                if (!is_numeric($value)) {
+                    return false;
+                }
                 break;
 
             case self::FILE_RULE:
-                if (!is_array($value) && !isset($value["type"])) return false;
+                if (!is_array($value) && !isset($value["type"])) {
+                    return false;
+                }
                 break;
         }
 

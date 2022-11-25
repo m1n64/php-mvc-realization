@@ -8,23 +8,37 @@ use App\Core\Controller\AbstractController;
 use App\Core\Validator\Validator;
 use App\Core\View\JsonView;
 use App\Models\TaskList;
+use App\Modules\Classes\Custom;
 
 class ToDoListController extends AbstractController
 {
 
-    public function __construct()
+    /**
+     * @param TaskList $taskList
+     * @param JsonView $view
+     */
+    public function __construct(
+        TaskList $taskList,
+        JsonView $view,
+    )
     {
         parent::__construct();
 
-        $this->model = new TaskList();
-        $this->view = new JsonView();
+        $this->model = $taskList;
+        $this->view = $view;
     }
 
+    /**
+     * @return void
+     */
     public function index(): void
     {
         //pass
     }
 
+    /**
+     * @return void
+     */
     public function get(): void
     {
         $tasks = $this->model->getData();
@@ -32,6 +46,9 @@ class ToDoListController extends AbstractController
         $this->view->success($tasks);
     }
 
+    /**
+     * @return void
+     */
     public function store(): void
     {
         $data = $this->request->getParams();
@@ -52,6 +69,9 @@ class ToDoListController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     */
     public function update(): void
     {
         $data = $this->request->getParams();
@@ -79,6 +99,9 @@ class ToDoListController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     */
     public function setStatus() : void
     {
         $status = $this->request->getParam("status");
@@ -101,6 +124,9 @@ class ToDoListController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     */
     public function delete() : void
     {
         $id = $this->request->getParam("id");
